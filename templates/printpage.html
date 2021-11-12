@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>STUB-MAKER</title>
+    <link rel = "icon" href="{% static "images/title.png" %}" type = "image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/printpage.css" %}" >
+  </head>
+  <body>
+    <br>
+    <page size="A4" ><center>
+      <div class="" id='mydiv'>
+
+        <table id = 'er'>
+          <tr>
+            <td style="width:5%">
+              <img  src = " {{ content.CLDY }} " alt="" style="width:1.3cm;height:1.1cm;float:right;" >
+            </td>
+            <td>&nbsp;</td>
+            <td >
+              <span style="float:left;"><b>{{ content.CN }}</b></span><br>
+              <span style="float:left;"><b>{{ content.CA }}</b></span>
+            </td>
+            <td><p>  </p></td>
+            <td style="float:right;" >
+              <br>
+              <h5><b>EARNING STATEMENT&nbsp</b></h7>
+            </td>
+          </tr>
+        </table>
+
+        <div class="box1">
+
+        <table class="table table">
+            <thead >
+              <th colspan="3" id = 'bor_bottom'>EMPLOYEE NAME / ADDRESS</th>
+              <th id = 'bor_bottom'>SSN</th>
+              <th id = 'bor_bottom'>REPORTING PERIOD</th>
+              <th id = 'bor_bottom'>PAY DATE</th>
+              <th id = 'bor_bottom'>#8012</th>
+            </thead>
+            <tr>
+              <td id = "full" colspan="3" style="width:35%">	&nbsp;{{ content.EN }}</td>
+              <td >{{ content.SSN }}</td>
+              <td id = "full">{{ content.RP }}</td>
+              <td id = "full">{{ content.PD }}</td>
+              <td id = "full">{{ content.CK }}</td>
+            </tr>
+            <thead >
+              <th id = 'bor_bottom'>INCOME</th>
+              <th id = 'bor_bottom'>RATE</th>
+              <th id = 'bor_bottom'>HOURS</th>
+              <th id = 'bor_bottom'>CURRENT PAY</th>
+              <th id = 'bor_bottom'>DEDUCTIONS</th>
+              <th id = 'bor_bottom' style="width:5%">TOTAL</th>
+              <th id = 'bor_bottom'>YTD TOTAL</th>
+
+            </thead>
+            <tr>
+              <td id="bor_left" >GROSS EARNING</td>
+              <td>{{ content.HR }}</td>
+              <td>{{ content.TH }}</td>
+              <td id="bor_right">{{ content.CPY }}</td>
+              <td id = "lhead" >
+                <span>&nbsp;&nbsp;STATUTORY DEDUCTIONS</span><br><br>
+                <span>&nbsp;&nbsp;FICA-MEDICAR</span><br><br>
+                <span>&nbsp;&nbsp;FICA SOCIAL SECURITY</span><br><br>
+                <span>&nbsp;&nbsp;FEDERAL TAX</span><br><br>
+                <span>&nbsp;&nbsp;STATE TAX</span><br><br>
+                <!-- <span>&nbsp;&nbsp;STATUTORY DEDUCTIONS</span><br> -->
+              </td>
+              <td>
+                <br>
+                <br>
+                <span>{{ content.FMT }}</span><br><br>
+                <span>{{ content.FSST }}</span><br><br>
+                <span>{{ content.FtT }}</span><br><br>
+                <span>{{ content.StT }}</span><br><br>
+              </td>
+
+              <td id="bor_right">
+                <br>
+                <br>
+                <span>{{ content.FMY }}</span><br><br>
+                <span>{{ content.FSSY }}</span><br><br>
+                <span>{{ content.FtY }}</span><br><br>
+                <span>{{ content.StY }}</span><br><br>
+              </td>
+            </tr>
+            <thead>
+              <th colspan="2" id = 'bor_bottom'>YTD GROSS</th>
+              <th id = 'bor_bottom'>YTD DEDUCTIONS</th>
+              <th id = 'bor_bottom'>YTD NET PAY</th>
+              <th id = 'bor_bottom'>TOTAL</th>
+              <th id = 'bor_bottom'>DEDUCTIONS</th>
+              <th id = 'bor_bottom'>NET PAY</th>
+            </thead>
+            <tr id = "full">
+              <td colspan="2">{{ content.YTDG }}</td>
+              <td >{{ content.YTDD }}</td>
+              <td >{{ content.YTDN }}</td>
+              <td >{{ content.TTL }}</td>
+              <td >{{ content.DED }}</td>
+              <td >{{ content.NP }}</td>
+            </tr>
+
+          </table>
+          </div>
+          <br>
+          </div>
+          <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+          <script src="{% static 'js/home.js' %}"></script>
+          <center><button type="button" onclick="PrintElem('#mydiv')"  id = 'btn_preview' class = 'btn btn text-light' name="button" style = "background-color: #fc6b03;height:1.3cm;width:6.3cm;font-weight:700;font-size:130%;box-shadow: 0 0 0.4cm rgba(0,0,0,0.6);">Print</button></center> -->
+    </page>
+  </body>
+
+</html>

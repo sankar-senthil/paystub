@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+{% load static %}
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>STUB-MAKER</title>
+      <link rel = "icon" href="{% static "images/title.png" %}" type = "image/x-icon">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static "css/home.css" %}" >
+
+    </head>
+    <body>
+      <nav class="navbar fixed-top bg-dark text-light">
+        <a class="navbar-brand">STUB-MAKER</a>
+        <ul class="navbar-nav">
+
+        <form class="form-inline" method="POST">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" name ="EMSE" type="search" placeholder="Employee Name" aria-label="Search">
+          <button class="btn btn-light" type="submit">Search</button>
+        </form><ul>
+
+      </nav>
+      <img id = "logo" src="{% static "images/logo.png" %}" alt="logo" >
+
+      <div class="boxed text-light">
+        <center><h1 id = "head1">Online Paystub Maker</h1></center>
+      </div>
+      <h2 id = 'head2'>Enter Your Information Here</h2>
+      <div id='main_container' class="container">
+
+        <!-- <div class="" id = 'box1' > -->
+          <form class="form-inline" method="POST" id='form2' enctype = "multipart/form-data">
+            {% csrf_token %}
+              <!-- <div id = 'row1' class="row">
+                <div class="col-sm"> -->
+                <div class="" id='table1'>
+                  <div class="row">
+                    <div class="col" id = 'td1'>
+                      <span>Select State:</span><br>
+                      <select class="" name="ST" id = 'state' style = "height:1cm;width:6.3cm;">
+                        <option value='Alabama' class = 'dropdown-item'>Alabama</option>
+                        {% for i in state_list %}
+                            {% if i  %}
+                              <option value='{{ i }}' class = 'dropdown-item'>{{ i }}</option>
+                            {% endif %}
+                         {% endfor %}
+                      </select>
+                    </div>
+                    <div class="col" id = 'td1'>
+                      <span>Marital Status:</span><br>
+                      <select class="" name="MS" id = 'MS' style = "height:1cm;width:6.3cm;">
+                        <option value='Single' class = 'dropdown-item'>Single</option>
+                        <option value='Married' class = 'dropdown-item'>Married</option>
+                      </select>
+                    </div>
+                    <div class="col" id = 'td1'>
+                      <span>How are you paid?:</span><br>
+                      <select class="" name="HRUP" id = 'HRUP' style = "height:1cm;width:6.3cm;">
+                        <option value='Weekly' class = 'dropdown-item'>Weekly</option>
+                        <option value='Bi-Weekly' class = 'dropdown-item'>Bi-Weekly</option>
+                        <option value='Monthly' class = 'dropdown-item'>Monthly</option>
+                        <option value='Semi-Monthly' class = 'dropdown-item'>Semi-Monthly</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col" id = 'td1'>
+                      <span>Hourly Rate:</span><br>
+                      <input type="number" step="any" name ="HR" class="form-control" placeholder="eg,123.45" style = "height:1cm;width:6.3cm;" value = {{ in_var.Pay_Date  }} required>
+                    </div>
+                    <div class="col" id = 'td1'>
+                      <span>Total Hour:</span><br>
+                      <input type="number" step="any" name ="TH" class="form-control" placeholder="eg,123.45" style = "height:1cm;width:6.3cm;" value = {{ in_var.Pay_Date  }} required>
+                    </div>
+                    <div class="col" id = 'td1'>
+                      <span>Employment Type</span><br>
+                        <select class="" name="ET" id = 'ET' style = "height:1cm;width:6.3cm;" onchange = "emptyp();">
+                          <option value='Employee' class = 'dropdown-item'>Employee</option>
+                          <option value='Contractor' class = 'dropdown-item' >Contractor</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col" id = 'td1'>
+                      <span>Company Logo</span><br>
+                      <input type="file" step="any" id = "CL" name ="CL" class="form-control" placeholder="eg,123.45" style = "height:1.2cm;width:6.2cm;" value = {{ in_var.Pay_Date  }} >
+                    </div>
+                    <div class="col" id = 'td1'>
+                      <span></span><br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="ALYTD" class="form-control" type="checkbox" onchange="lasthide();" style = "height:0.7cm;width:0.7cm;" name="" value="">
+                      <span>&nbsp;Add Last YTD</span>
+                    </div>
+
+                    <div class="col" id = 'td1'>
+                      <div class="" id = 'Last1'>
+                      <span>Last YTD Gross</span><br>
+                      <input  type="input"  name ="LYD" class="form-control" value="" style = "height:1cm;width:6.2cm;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="" id = 'Last'>
+                  <div class="row" >
+                    <div class="col" id = 'td1'>
+                      <span>Last Fica Medicare</span><br>
+                      <input  type="input"  name ="LFM" class="form-control" value="" style = "height:1cm;width:6.2cm;">
+                    </div>
+                    <div class="col" id = 'td1'>
+                      <span>Last Fica Social Security</span><br>
+                      <input  type="input"  name ="LFSS" class="form-control" value="" style = "height:1cm;width:6.2cm;">
+                    </div>
+                    <div class="col" id = 'td1'>
+                      <span>Last Federal Tax</span><br>
+                      <input  type="input"  name ="LFT" class="form-control" value="" style = "height:1cm;width:6.2cm;">
+                    </div>
+                  </div>
+                  <div class="row" >
+                    <div class="col" id = 'td1'>
+                      <span>State Tax</span><br>
+                      <input  type="input"  name ="LST" class="form-control" value="" style = "height:1cm;width:6.2cm;">
+                    </div>
+                    <div class="col" id = 'td1'>
+
+                    </div>
+                    <div class="col" id = 'td1'>
+
+                    </div>
+
+                  </div>
+                  </div>
+                </div>
+
+                  </div>
+                  <div class="container">
+                    <div class="jumbotron">
+                      <div class="table-3">
+                      <div class="row">
+                        <div class="col-sm">
+                          <span>Employee Name</span>
+                          <input type="input"  name ="EN" class="form-control" placeholder="Company Name"  value = {{ in_var.Pay_Date  }} >
+                        </div>
+                        <div class="col-sm ">
+                          <span>Employee Address</span>
+                          <textarea name ="EA" class="form-control" name="message" rows="5" cols="5" required  placeholder="Company Address">{{ in_var.Company_Address }}</textarea>
+                        </div>
+
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-sm">
+                          <span>Company Name</span>
+                          <input type="input"  name ="CN" class="form-control" placeholder="Company Name"  value = {{ in_var.Pay_Date  }} >
+                        </div>
+                        <div class="col-sm ">
+                          <span>Company Address</span>
+                          <textarea name ="CA" class="form-control" name="message" rows="5" cols="5" required  placeholder="Company Address">{{ in_var.Company_Address }}</textarea>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col">
+                          <span>SSN:</span>
+                          <input type="input" name ="SSN" class="form-control" id="exampleInputEmail1"  required placeholder="SSN" value = {{ in_var.SSN }}>
+                        </div>
+                        <div class="col">
+                          <span>Reporting Period:</span>
+                            <div class="row">
+                                <div class="col">
+                                  <input type="date"  name ="RP1" class="form-control" id="exampleInputEmail1"   required placeholder="Reporting Period form" value = {{ in_var.Reporting_Period1  }} >   </div>
+                                <div class="col">
+                                  <input type="date"  name ="RP2" class="form-control" id="exampleInputEmail1"   placeholder="Reporting Period to" value = {{ in_var.Reporting_Period2  }}>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col">
+                          <span>Pay Date:</span>
+                          <input type="date" name ="PD" class="form-control" id="exampleInputEmail1"  placeholder="Pay Date" value = {{ in_var.Pay_Date  }} required>
+                        </div>
+                        <div class="col">
+                          <span>Check#:</span>
+                          <input type="text" name ="CK" class="form-control" id="exampleInputEmail1"  placeholder="Pay Date" required>
+                        </div>
+                      </div></div>
+                      <br>
+                      <br>
+                      <br>
+                      <div class="table-3">
+                      <span>Statutory Deductions:</span>
+                          <br><br>
+                          <div class="row">
+                            <div class="col-2">
+                              <span>Fica Medicare:</span>
+                            </div>
+                            <div class="col-5">
+                              <input type="number" name ="FMT"  class="form-control" id="FMT" required  placeholder="Total" value = {{ in_var.Fica_Medicare_Total }}>            </div>
+                            <div class="col-5">
+                              <input type="number" name ="FMY"  class="form-control" id="FMY" required  placeholder="YTD Total" value = {{ in_var.Fica_Medicare_YTD }}>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col-2">
+                              <span>Fica Social Security:</span>
+                            </div>
+                            <div class="col-5">
+                              <input type="number" name ="FSST"  class="form-control" id="FSST" required  placeholder="Total" value = {{ in_var.Fica_Social_Security_Total }}>
+                            </div>
+                            <div class="col-5">
+                              <input type="number" name ="FSSY"  class="form-control" id="FSSY" required  placeholder="YTD Total" value = {{ in_var.Fica_Social_Security_YTD }}>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col-2">
+                              <span>Federal tax:</span>
+                            </div>
+                            <div class="col-5">
+                              <input type="number" name ="FtT"  class="form-control" id="FtT" required  placeholder="Total" value = {{ in_var.Federal_tax_Total }}>
+                            </div>
+                            <div class="col-5">
+                              <input type="number" name ="FtY"  class="form-control" id="FtY" required  placeholder="YTD Total" value = {{ in_var.Federal_tax_YTD }}>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col-2">
+                              <span>State Tax:</span>
+                            </div>
+                            <div class="col-5">
+                              <input type="number" name ="StT"  class="form-control" id="StT" required  placeholder="Total" value = {{ in_var.State_Tax_Total }}>
+                            </div>
+                            <div class="col-5">
+                              <input type="number" name ="StY"  class="form-control" id="StY" required  placeholder="YTD Total" value = {{ in_var.State_Tax_YTD }}>
+                            </div>
+                          </div>
+                          </div>
+                          <br>
+                          <br>
+                          <button type="submit" id = 'btn_preview' class = 'btn btn text-light' name="button" style = "background-color: #fc6b03;height:1.3cm;width:6.3cm;font-weight:700;float: right;box-shadow: 0 0 0.4cm rgba(0,0,0,0.6);">Preview</button>
+
+                          </div>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+              <script src="{% static 'js/home.js' %}"></script>
+</body>
+
+</html>
